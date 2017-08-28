@@ -1,5 +1,8 @@
 #r "Newtonsoft.Json"
 #load "EchoDialog.csx"
+#load "menuP.csx"
+#load "explicationDialog.csx"
+#load "questDialog.csx"
 
 using System;
 using System.Net;
@@ -34,7 +37,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
             switch (activity.GetActivityType())
             {
                 case ActivityTypes.Message:
-                    await Conversation.SendAsync(activity, () => new EchoDialog());
+                    await Conversation.SendAsync(activity, () => new menuP(1));
                     break;
                 case ActivityTypes.ConversationUpdate:
                     var client = new ConnectorClient(new Uri(activity.ServiceUrl));
@@ -45,12 +48,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                         var newMembers = update.MembersAdded?.Where(t => t.Id != activity.Recipient.Id);
                         foreach (var newMember in newMembers)
                         {
-                            reply.Text = "Welcome";
-                            if (!string.IsNullOrEmpty(newMember.Name))
-                            {
-                                reply.Text += $" {newMember.Name}";
-                            }
-                            reply.Text += "!";
+                            reply.Text = "Salut! Je suis Enigmaa, es-tu prêt à partir à l'aventure?!";
                             await client.Conversations.ReplyToActivityAsync(reply);
                         }
                     }
