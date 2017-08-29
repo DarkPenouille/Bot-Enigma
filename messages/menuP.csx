@@ -7,7 +7,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
 
-    [Serializable]
+[Serializable]
     public class menuP : IDialog<object>
     {
         public string[] choixMenu;

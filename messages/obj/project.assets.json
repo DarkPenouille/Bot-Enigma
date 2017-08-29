@@ -2,13 +2,13 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.6": {
-      "Autofac/3.5.2": {
+      "Autofac/4.1.1": {
         "type": "package",
         "compile": {
-          "lib/net40/Autofac.dll": {}
+          "lib/net45/Autofac.dll": {}
         },
         "runtime": {
-          "lib/net40/Autofac.dll": {}
+          "lib/net45/Autofac.dll": {}
         }
       },
       "Chronic.Signed/0.3.2": {
@@ -47,6 +47,31 @@
           "lib/net45/System.Web.Http.dll": {}
         }
       },
+      "Microsoft.Azure.DocumentDB/1.11.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.8"
+        },
+        "compile": {
+          "lib/net45/Microsoft.Azure.Documents.Client.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.Azure.Documents.Client.dll": {}
+        },
+        "build": {
+          "build/Microsoft.Azure.DocumentDB.targets": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win7-x64/native/DocumentDB.Spatial.Sql.dll": {
+            "assetType": "native",
+            "rid": "win7-x64"
+          },
+          "runtimes/win7-x64/native/Microsoft.Azure.Documents.ServiceInterop.dll": {
+            "assetType": "native",
+            "rid": "win7-x64"
+          }
+        }
+      },
       "Microsoft.Azure.KeyVault.Core/1.0.0": {
         "type": "package",
         "compile": {
@@ -56,22 +81,24 @@
           "lib/net40/Microsoft.Azure.KeyVault.Core.dll": {}
         }
       },
-      "Microsoft.Bot.Builder/3.3.3": {
+      "Microsoft.Bot.Builder/3.8.1": {
         "type": "package",
         "dependencies": {
           "Autofac": "3.5.2",
           "Chronic.Signed": "0.3.2",
           "Microsoft.AspNet.WebAPI.Core": "5.2.3",
-          "Microsoft.IdentityModel.Protocol.Extensions": "1.0.2.206221351",
+          "Microsoft.IdentityModel.Protocol.Extensions": "1.0.4.403061554",
           "Microsoft.Rest.ClientRuntime": "2.3.2",
           "Newtonsoft.Json": "8.0.3",
-          "System.IdentityModel.Tokens.Jwt": "[4.0.2.206221351, 5.0.0)"
+          "System.IdentityModel.Tokens.Jwt": "[4.0.4.403061554, 5.0.0)"
         },
         "compile": {
+          "lib/net46/Microsoft.Bot.Builder.Autofac.dll": {},
           "lib/net46/Microsoft.Bot.Builder.dll": {},
           "lib/net46/Microsoft.Bot.Connector.dll": {}
         },
         "runtime": {
+          "lib/net46/Microsoft.Bot.Builder.Autofac.dll": {},
           "lib/net46/Microsoft.Bot.Builder.dll": {},
           "lib/net46/Microsoft.Bot.Connector.dll": {}
         },
@@ -108,11 +135,12 @@
           }
         }
       },
-      "Microsoft.Bot.Builder.Azure/3.1.0": {
+      "Microsoft.Bot.Builder.Azure/3.2.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Bot.Builder": "3.3.3",
-          "Microsoft.Bot.Builder.History": "3.0.1",
+          "Microsoft.Azure.DocumentDB": "1.11.0",
+          "Microsoft.Bot.Builder": "3.8.0",
+          "Microsoft.Bot.Builder.History": "3.0.4",
           "Newtonsoft.Json": "8.0.3",
           "WindowsAzure.Storage": "7.2.1"
         },
@@ -123,16 +151,31 @@
           "lib/net46/Microsoft.Bot.Builder.Azure.dll": {}
         }
       },
-      "Microsoft.Bot.Builder.History/3.0.1": {
+      "Microsoft.Bot.Builder.History/3.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Bot.Builder": "3.3.3"
+          "Microsoft.Bot.Builder": "3.8.0"
         },
         "compile": {
           "lib/net46/Microsoft.Bot.Builder.History.dll": {}
         },
         "runtime": {
           "lib/net46/Microsoft.Bot.Builder.History.dll": {}
+        }
+      },
+      "Microsoft.Bot.Builder.Location/2.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Autofac": "4.1.1",
+          "Microsoft.Bot.Builder": "3.8.1",
+          "Microsoft.Rest.ClientRuntime": "2.3.3",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/net46/Microsoft.Bot.Builder.Location.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Microsoft.Bot.Builder.Location.dll": {}
         }
       },
       "Microsoft.Data.Edm/5.6.4": {
@@ -256,10 +299,10 @@
           }
         }
       },
-      "Microsoft.IdentityModel.Protocol.Extensions/1.0.2.206221351": {
+      "Microsoft.IdentityModel.Protocol.Extensions/1.0.4.403061554": {
         "type": "package",
         "dependencies": {
-          "System.IdentityModel.Tokens.Jwt": "4.0.2.206221351"
+          "System.IdentityModel.Tokens.Jwt": "4.0.4.403061554"
         },
         "compile": {
           "lib/net45/Microsoft.IdentityModel.Protocol.Extensions.dll": {}
@@ -268,7 +311,7 @@
           "lib/net45/Microsoft.IdentityModel.Protocol.Extensions.dll": {}
         }
       },
-      "Microsoft.Rest.ClientRuntime/2.3.2": {
+      "Microsoft.Rest.ClientRuntime/2.3.3": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "6.0.8"
@@ -289,7 +332,7 @@
           "lib/net45/Microsoft.Rest.ClientRuntime.dll": {}
         }
       },
-      "Newtonsoft.Json/8.0.3": {
+      "Newtonsoft.Json/9.0.1": {
         "type": "package",
         "compile": {
           "lib/net45/Newtonsoft.Json.dll": {}
@@ -298,7 +341,7 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "System.IdentityModel.Tokens.Jwt/4.0.2.206221351": {
+      "System.IdentityModel.Tokens.Jwt/4.0.4.403061554": {
         "type": "package",
         "compile": {
           "lib/net45/System.IdentityModel.Tokens.Jwt.dll": {}
@@ -366,17 +409,17 @@
     }
   },
   "libraries": {
-    "Autofac/3.5.2": {
-      "sha512": "pGR5LjY8T/16x6SkJNd7u6EjQnE4C7JS0BZJ7Yl7pt313gIUZ/2ZnPSOIM5eaIA7ArxaudlyyLvAT4ayX5UJ/A==",
+    "Autofac/4.1.1": {
+      "sha512": "C0O06dJ1/WAYr4CZzBu3RCs2GZuR3G8PQFqgxa3PP4jDMUb9//jgL2ONvF06qxPsC0UflkBS55wmd7C5oaEsEg==",
       "type": "package",
-      "path": "autofac/3.5.2",
+      "path": "autofac/4.1.1",
       "files": [
-        "autofac.3.5.2.nupkg.sha512",
+        "autofac.4.1.1.nupkg.sha512",
         "autofac.nuspec",
-        "lib/net40/Autofac.dll",
-        "lib/net40/Autofac.xml",
-        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll",
-        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.xml"
+        "lib/net45/Autofac.dll",
+        "lib/net45/Autofac.xml",
+        "lib/netstandard1.1/Autofac.dll",
+        "lib/netstandard1.1/Autofac.xml"
       ]
     },
     "Chronic.Signed/0.3.2": {
@@ -414,6 +457,20 @@
         "microsoft.aspnet.webapi.core.nuspec"
       ]
     },
+    "Microsoft.Azure.DocumentDB/1.11.0": {
+      "sha512": "ARqtjfqcr2vEr42IBHRhS4RetBLBsFGGJqywcJFAsvubo5tGaYqzK90etB1msf0kyX8g+wtLjUztnDvwAAFacg==",
+      "type": "package",
+      "path": "microsoft.azure.documentdb/1.11.0",
+      "files": [
+        "build/Microsoft.Azure.DocumentDB.targets",
+        "lib/net45/Microsoft.Azure.Documents.Client.XML",
+        "lib/net45/Microsoft.Azure.Documents.Client.dll",
+        "microsoft.azure.documentdb.1.11.0.nupkg.sha512",
+        "microsoft.azure.documentdb.nuspec",
+        "runtimes/win7-x64/native/DocumentDB.Spatial.Sql.dll",
+        "runtimes/win7-x64/native/Microsoft.Azure.Documents.ServiceInterop.dll"
+      ]
+    },
     "Microsoft.Azure.KeyVault.Core/1.0.0": {
       "sha512": "iaA0E8xoVlqroQ7Iurg/VyAjfPdhzn+xN7JkdncmNoox/ez49uPbxp2vMrvhopBaUMuoBu38+8e0RvrV+X+BxA==",
       "type": "package",
@@ -427,11 +484,13 @@
         "microsoft.azure.keyvault.core.nuspec"
       ]
     },
-    "Microsoft.Bot.Builder/3.3.3": {
-      "sha512": "uUWgDxw1uKYUIRik/P1eILvlfRVudJZ4goDIde5T2CDhMheGYNEcTTOdltdck1C+ykIsFCk4HQDGfyOZFcbG+Q==",
+    "Microsoft.Bot.Builder/3.8.1": {
+      "sha512": "LrsmqC0CcmOjYIcavYmgGhGBJm7cN2LwZ3scYDESssu+rcfDjJorfm8q3ty0MlE2jfuMC5sopTNY4e+6AuWL3g==",
       "type": "package",
-      "path": "microsoft.bot.builder/3.3.3",
+      "path": "microsoft.bot.builder/3.8.1",
       "files": [
+        "lib/net46/Microsoft.Bot.Builder.Autofac.XML",
+        "lib/net46/Microsoft.Bot.Builder.Autofac.dll",
         "lib/net46/Microsoft.Bot.Builder.XML",
         "lib/net46/Microsoft.Bot.Builder.dll",
         "lib/net46/Microsoft.Bot.Connector.dll",
@@ -446,31 +505,41 @@
         "lib/net46/ja/Microsoft.Bot.Builder.resources.dll",
         "lib/net46/ru/Microsoft.Bot.Builder.resources.dll",
         "lib/net46/zh-hans/Microsoft.Bot.Builder.resources.dll",
-        "microsoft.bot.builder.3.3.3.nupkg.sha512",
+        "microsoft.bot.builder.3.8.1.nupkg.sha512",
         "microsoft.bot.builder.nuspec",
         "tools/RView.exe"
       ]
     },
-    "Microsoft.Bot.Builder.Azure/3.1.0": {
-      "sha512": "d57mI8EcemQuNOMeeuUmv03/siu/rooaVZfQnBfKVsfwT0kgqI7B4Uzy9alr4+8v9q2FiP/Wayd95KZMvLU42Q==",
+    "Microsoft.Bot.Builder.Azure/3.2.2": {
+      "sha512": "Zb1UT25Y5TNFDlHf0YkleWOy5DOGDhDz6YuoCzrLSWc6tSaOIOZsfNFrzyD0cspifsy2osc7So9c+TvUEMFCvA==",
       "type": "package",
-      "path": "microsoft.bot.builder.azure/3.1.0",
+      "path": "microsoft.bot.builder.azure/3.2.2",
       "files": [
         "lib/net46/Microsoft.Bot.Builder.Azure.XML",
         "lib/net46/Microsoft.Bot.Builder.Azure.dll",
-        "microsoft.bot.builder.azure.3.1.0.nupkg.sha512",
+        "microsoft.bot.builder.azure.3.2.2.nupkg.sha512",
         "microsoft.bot.builder.azure.nuspec"
       ]
     },
-    "Microsoft.Bot.Builder.History/3.0.1": {
-      "sha512": "f6njrDJRusysEKV761F9xfwqOy+UnmpmwrSH1r80oZF5SgcJc0wbDhlkSp0qDfW4cdhhppho1JBZQko2XMTGLA==",
+    "Microsoft.Bot.Builder.History/3.0.4": {
+      "sha512": "nhUtujyF6jXWoYndMeUpIPOUI2KY3A79epKPtDRb+itOfwmJA3CymlBi44hMys7kjMZXl6Qx69oEaZVXxGOmmQ==",
       "type": "package",
-      "path": "microsoft.bot.builder.history/3.0.1",
+      "path": "microsoft.bot.builder.history/3.0.4",
       "files": [
         "lib/net46/Microsoft.Bot.Builder.History.XML",
         "lib/net46/Microsoft.Bot.Builder.History.dll",
-        "microsoft.bot.builder.history.3.0.1.nupkg.sha512",
+        "microsoft.bot.builder.history.3.0.4.nupkg.sha512",
         "microsoft.bot.builder.history.nuspec"
+      ]
+    },
+    "Microsoft.Bot.Builder.Location/2.1.0": {
+      "sha512": "IYd/40zUVbY+dgdb03jCcdBoktkctkd6TXxQcTBFoMbNNCnHtFPFakqWYOpMIna3G2rqAczqU04zfMOmxGECxA==",
+      "type": "package",
+      "path": "microsoft.bot.builder.location/2.1.0",
+      "files": [
+        "lib/net46/Microsoft.Bot.Builder.Location.dll",
+        "microsoft.bot.builder.location.2.1.0.nupkg.sha512",
+        "microsoft.bot.builder.location.nuspec"
       ]
     },
     "Microsoft.Data.Edm/5.6.4": {
@@ -621,34 +690,33 @@
         "microsoft.data.services.client.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Protocol.Extensions/1.0.2.206221351": {
-      "sha512": "3uzp0TnBa7jJj0iq8THarL+D/tcVkL5nJOLA1ewwXvI4DzlDKMQWN+Rd8o07uX72VIuMRyR7CIhB9rnwvYK1wg==",
+    "Microsoft.IdentityModel.Protocol.Extensions/1.0.4.403061554": {
+      "sha512": "DLkNnlNVQNA7Mbj7TGWErfRHBjYhaHJEX/U6uz0xakSujoAKRAWdx86vK8lsog6uhLow5hb/ljY9JpW3x8q+sg==",
       "type": "package",
-      "path": "microsoft.identitymodel.protocol.extensions/1.0.2.206221351",
+      "path": "microsoft.identitymodel.protocol.extensions/1.0.4.403061554",
       "files": [
         "lib/net45/Microsoft.IdentityModel.Protocol.Extensions.XML",
         "lib/net45/Microsoft.IdentityModel.Protocol.Extensions.dll",
-        "lib/net45/Microsoft.IdentityModel.Protocol.Extensions.pdb",
-        "microsoft.identitymodel.protocol.extensions.1.0.2.206221351.nupkg.sha512",
+        "microsoft.identitymodel.protocol.extensions.1.0.4.403061554.nupkg.sha512",
         "microsoft.identitymodel.protocol.extensions.nuspec"
       ]
     },
-    "Microsoft.Rest.ClientRuntime/2.3.2": {
-      "sha512": "qrPBemfdOfD7/LcSa7Hqi01KqLwCZbJ+/GSLN9BnL058/gMU9lvU+Ww19oZbjXh9jr2WzNXPhMJ/YkX9bwQCfw==",
+    "Microsoft.Rest.ClientRuntime/2.3.3": {
+      "sha512": "j3lSk5RFDismdIheeA0tCKuiNphDosqxCHZVx4JjFcpZ39Ym3dJE8siw5D8diOfGS3tYzsGFM6Xr5Z/f3nCQeQ==",
       "type": "package",
-      "path": "microsoft.rest.clientruntime/2.3.2",
+      "path": "microsoft.rest.clientruntime/2.3.3",
       "files": [
         "lib/net45/Microsoft.Rest.ClientRuntime.dll",
         "lib/netstandard1.1/Microsoft.Rest.ClientRuntime.dll",
         "lib/netstandard1.5/Microsoft.Rest.ClientRuntime.dll",
-        "microsoft.rest.clientruntime.2.3.2.nupkg.sha512",
+        "microsoft.rest.clientruntime.2.3.3.nupkg.sha512",
         "microsoft.rest.clientruntime.nuspec"
       ]
     },
-    "Newtonsoft.Json/8.0.3": {
-      "sha512": "KGsYQdS2zLH+H8x2cZaSI7e+YZ4SFIbyy1YJQYl6GYBWjf5o4H1A68nxyq+WTyVSOJQ4GqS/DiPE+UseUizgMg==",
+    "Newtonsoft.Json/9.0.1": {
+      "sha512": "zWManp7UYL4IwHiimBh3j+M2yWT9puc0ygKnwK3ThAZqL6vPVWyoW7gXfbspOX1v8ZMPhf9aTiSCfdYkNw7j9A==",
       "type": "package",
-      "path": "newtonsoft.json/8.0.3",
+      "path": "newtonsoft.json/9.0.1",
       "files": [
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
@@ -658,24 +726,25 @@
         "lib/net40/Newtonsoft.Json.xml",
         "lib/net45/Newtonsoft.Json.dll",
         "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
-        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll",
-        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
-        "newtonsoft.json.8.0.3.nupkg.sha512",
+        "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.9.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
       ]
     },
-    "System.IdentityModel.Tokens.Jwt/4.0.2.206221351": {
-      "sha512": "bBOwCeNaLK86xlBwAjuQ772eHFekr4pQQmPwgcVfQ2OMqGILCJp8YCEZfT3YBSYw3WEFM04vfLST4hmDtuKePQ==",
+    "System.IdentityModel.Tokens.Jwt/4.0.4.403061554": {
+      "sha512": "9WVCyFoR8ovKmPkpXz/jvfRYJ9SkJr6bGUlKJSIXZbMzaqDjUVzu7JAetovn+U9mFE4TIzLdfoHCMiU+EkjJaw==",
       "type": "package",
-      "path": "system.identitymodel.tokens.jwt/4.0.2.206221351",
+      "path": "system.identitymodel.tokens.jwt/4.0.4.403061554",
       "files": [
         "lib/net45/System.IdentityModel.Tokens.Jwt.Xml",
         "lib/net45/System.IdentityModel.Tokens.Jwt.dll",
-        "lib/net45/System.IdentityModel.Tokens.Jwt.pdb",
-        "system.identitymodel.tokens.jwt.4.0.2.206221351.nupkg.sha512",
+        "system.identitymodel.tokens.jwt.4.0.4.403061554.nupkg.sha512",
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
@@ -755,7 +824,9 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.6": [
-      "Microsoft.Bot.Builder.Azure >= 3.1.0"
+      "Microsoft.Bot.Builder >= 3.8.1",
+      "Microsoft.Bot.Builder.Azure >= 3.2.2",
+      "Microsoft.Bot.Builder.Location >= 2.1.0"
     ]
   },
   "packageFolders": {
@@ -789,9 +860,17 @@
       }
     },
     "dependencies": {
+      "Microsoft.Bot.Builder": {
+        "target": "Package",
+        "version": "3.8.1.0"
+      },
       "Microsoft.Bot.Builder.Azure": {
         "target": "Package",
-        "version": "3.1"
+        "version": "3.2.2"
+      },
+      "Microsoft.Bot.Builder.Location": {
+        "target": "Package",
+        "version": "2.1.0"
       }
     },
     "frameworks": {

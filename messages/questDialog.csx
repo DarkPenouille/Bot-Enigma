@@ -1,13 +1,15 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
-
-    [Serializable]
+[Serializable]
     public class questDialog : IDialog<object>
     {
         public DateTime time;
@@ -21,38 +23,38 @@ using Microsoft.Bot.Connector;
         
         public async Task StartAsync(IDialogContext context)
         {
-            await context.PostAsync("Vous avez choisi de partir à l'aventure!");
-            await context.PostAsync("A tout moment vous pouvez taper \"temps\" pour consulter le chrono.");
-            await context.PostAsync("Voici la route menant à votre première épreuve!");
-            
-            context.Wait(this.Challenges);
-        }
+        context.Wait(start);
+      }
+
+    public async Task start(IDialogContext context, IAwaitable<IMessageActivity> argument)
+    {
+        var message = await argument as Activity;
+        var reply = message.CreateReply();
+        reply.Attachments = new List<Attachment>();
+
+        await context.PostAsync("Vous avez choisi de partir à l'aventure!");
+        await context.PostAsync("A tout moment vous pouvez taper \"temps\" pour consulter le chrono.");
+        await context.PostAsync("Voici les quêtes proches de vous");
+
+
+        HeroCard hc = new HeroCard()
+        {
+            Title = "Voici les quêtes les plus proches de vous",
+            Subtitle = "",
+            Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Quête de Malmedy", value: "1"),
+            new CardAction(ActionTypes.PostBack, "Quête du café de la place", value: "2"),
+            new CardAction(ActionTypes.PostBack, "Parours de la cathédrale", value: "3"),
+            new CardAction(ActionTypes.PostBack, "Quête des champignons", value: "4") }
+        };
+
+        reply.Attachments.Add(hc.ToAttachment());
+        await context.PostAsync(reply);
+
+        context.Wait(this.Challenges);
+    }
 
         public async Task Challenges(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
-            var message = await argument as Activity;
-
-            var reply = message.CreateReply();
-            reply.Attachments = new List<Attachment>();
-
-            HeroCard hc = new HeroCard()
-            {
-                Title = "titre",
-                Subtitle = "sous-titre"
-            };
-
-            List<CardImage> images = new List<CardImage>();
-
-            CardImage ci = new CardImage("");
-            images.Add(ci);
-
-            hc.Images = images;
-
-            reply.Attachments.Add(hc.ToAttachment());
-            await context.PostAsync(reply);
-
-            challengeCounter++;
-        
-            context.Wait(Challenges);
+            
         }
     }
