@@ -43,35 +43,20 @@ using Microsoft.Bot.Connector;
             await context.PostAsync(menu);
 
             context.Wait(this.choice);
+
         }
 
-        private static Attachment GetThumbnailCard()
-        {
-            var heroCard = new HeroCard
-            {
-                Title = "Que l'aventure commence!",
-                //Subtitle = "Your bots — wherever your users are talking",
-                Text = "Pour commencer à jouer, choisissez \"Quêtes\".\n" +
-                "Pour apprendre à jouer ou visiter le site offciel, choisissez \"Explications\" ou \"Site officiel\" ",
-                Images = new List<CardImage> { new CardImage("https://s-media-cache-ak0.pinimg.com/736x/36/a4/85/36a48536da0dc7609432c61e3e93aba6--jouer-smartphone.jpg") },
-                //Buttons = 
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Quêtes", value: "quetes"),
-                new CardAction(ActionTypes.PostBack, "Explications", value: "explications"),
-                new CardAction(ActionTypes.OpenUrl, "Site officiel", value: "https://docs.microsoft.com/bot-framework")}
-            };
+        
 
-            return heroCard.ToAttachment();
-        }
-
-        private async Task choice(IDialogContext context, IAwaitable<IMessageActivity> argument)
+        public async Task choice(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
             var message = await argument as Activity;
 
-            if (message.Text.StartsWith("quetes"))
+            if (message.Text == ("quetes"))
             {
                 context.Call(new questDialog(), this.after);
             }
-            else if (message.Text.StartsWith("explications"))
+            else if (message.Text == ("explications"))
             {
                 context.Call(new explicationDialog(), this.after);
             }
@@ -81,5 +66,23 @@ using Microsoft.Bot.Connector;
         {
 
         }
+
+    private static Attachment GetThumbnailCard()
+    {
+        var heroCard = new HeroCard
+        {
+            Title = "Que l'aventure commence!",
+            //Subtitle = "Your bots — wherever your users are talking",
+            Text = "Pour commencer à jouer, choisissez \"Quêtes\".\n" +
+            "Pour apprendre à jouer ou visiter le site offciel, choisissez \"Explications\" ou \"Site officiel\" ",
+            Images = new List<CardImage> { new CardImage("https://s-media-cache-ak0.pinimg.com/736x/36/a4/85/36a48536da0dc7609432c61e3e93aba6--jouer-smartphone.jpg") },
+            //Buttons = 
+            Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Quêtes", value: "quetes"),
+                new CardAction(ActionTypes.PostBack, "Explications", value: "explications"),
+                new CardAction(ActionTypes.OpenUrl, "Site officiel", value: "https://docs.microsoft.com/bot-framework")}
+        };
+
+        return heroCard.ToAttachment();
     }
+}
 
