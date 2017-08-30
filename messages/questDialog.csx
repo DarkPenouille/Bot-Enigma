@@ -21,24 +21,27 @@ using Microsoft.Bot.Connector;
         this.challengeCounter = 0;
         }
         
-        public async Task StartAsync(IDialogContext context)
-        {
-        context.Wait(start);
-      }
+        //public async Task StartAsync(IDialogContext context)
+        //{
+        //var msg = context.MakeMessage();
+        //msg.Attachments.Add(getLocalisation());
+        //await context.PostAsync(msg);
+        //context.Wait(start);
+         //}
 
-    public async Task start(IDialogContext context, IAwaitable<IMessageActivity> argument)
+    public async Task StartAsync(IDialogContext context)
     {
-        var message = await argument as Activity;
-        var reply = message.CreateReply();
-        reply.Attachments = new List<Attachment>();
+        var msg = context.MakeMessage();
+        msg.Attachments.Add(getLocalisation());
+        
 
         await context.PostAsync("Vous avez choisi de partir à l'aventure!");
         await context.PostAsync("A tout moment vous pouvez taper \"temps\" pour consulter le chrono.");
         await context.PostAsync("J'ai besoin de savoir où vous êtes pour trouver les quêtes proches de vous!");
 
         
-        reply.Attachments.Add(getLocalisation());
-        await context.PostAsync(reply);
+
+        await context.PostAsync(msg);
 
 
         context.Wait(this.menuQuete);
@@ -55,7 +58,7 @@ using Microsoft.Bot.Connector;
             Title = "Voici les quêtes les plus proches de vous",
             Subtitle = "",
             Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Quête de Malmedy", value: "Quête de Malmedy"),
-            new CardAction(ActionTypes.PostBack, "La montée du Calvaire", value: "La montée du Calvaire"),
+            new CardAction(ActionTypes.PostBack, "Montée du Calvaire", value: "La montée du Calvaire"),
             new CardAction(ActionTypes.PostBack, "Parours de l'étang", value: "Parours de l'étang")}
         };
 
@@ -256,9 +259,15 @@ using Microsoft.Bot.Connector;
     public async Task remerciements(IDialogContext context, IAwaitable<IMessageActivity> argument)
     {
         await context.PostAsync("Merci pour votre appréciation et à bientôt!");
+        context.Call(new menuP(1), this.after);
     }
 
-        private static Attachment getLocalisation()
+    private async Task after(IDialogContext context, IAwaitable<object> result)
+    {
+
+    }
+
+    private static Attachment getLocalisation()
     {
         var heroCard = new HeroCard
         {

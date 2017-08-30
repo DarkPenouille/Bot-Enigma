@@ -33,9 +33,9 @@ using Microsoft.Bot.Connector;
                 await context.PostAsync("Salut");
             }
 
-            //context.Wait(MessageReceivedAsync);
-
-            var menu = message.CreateReply();
+        //context.Wait(MessageReceivedAsync);
+        //await context.PostAsync("Salut! Je suis Enigmaa, es-tu prêt à partir à l'aventure?!");
+        var menu = message.CreateReply();
 
             menu.Attachments = new List<Attachment>();
             menu.Attachments.Add(GetThumbnailCard());
@@ -73,8 +73,7 @@ using Microsoft.Bot.Connector;
         {
             Title = "Que l'aventure commence!",
             //Subtitle = "Your bots — wherever your users are talking",
-            Text = "Pour commencer à jouer, choisissez \"Quêtes\".\n" +
-            "Pour apprendre à jouer ou visiter le site offciel, choisissez \"Explications\" ou \"Site officiel\" ",
+            Text = "Pour commencer à jouer, choisissez \"Quêtes\" ou \"Explications\" pour apprendre à jouer.",
             Images = new List<CardImage> { new CardImage("https://s-media-cache-ak0.pinimg.com/736x/36/a4/85/36a48536da0dc7609432c61e3e93aba6--jouer-smartphone.jpg") },
             //Buttons = 
             Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Quêtes", value: "quetes"),
