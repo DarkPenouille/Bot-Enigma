@@ -249,18 +249,8 @@ using Microsoft.Bot.Connector;
         await context.PostAsync("Vous avez terminé la quête de Malmedy en 12 minutes et 11 secondes!");
         await context.PostAsync("Votre score est de 17 points!");
 
-        HeroCard hc = new HeroCard()
-        {
-            Title = "Comment noteriez-vous cette quête?",
-            Subtitle = "",
-            Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "★", value: "Quête de Malmedy"),
-            new CardAction(ActionTypes.PostBack, "★★", value: "Quête du café de la place"),
-            new CardAction(ActionTypes.PostBack, "★★★", value: "Parours de la cathédrale"),
-            new CardAction(ActionTypes.PostBack, "★★★★", value: "Quête des champignons") }
-        };
-
-        reply.Attachments.Add(hc.ToAttachment());
-        await context.PostAsync(reply);
+        await context.PostAsync("Sur une échelle de 1 à 10, comment noteriez-vous cette quête?");
+        
         context.Wait(this.remerciements);
     }
 
@@ -273,7 +263,7 @@ using Microsoft.Bot.Connector;
     {
         var heroCard = new HeroCard
         {
-            Title = "",
+            
             //Subtitle = "Your bots — wherever your users are talking",
 
             Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Envoyez localisation!", value: "localisation") }
