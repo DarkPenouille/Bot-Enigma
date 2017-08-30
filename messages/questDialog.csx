@@ -55,9 +55,8 @@ using Microsoft.Bot.Connector;
             Title = "Voici les quêtes les plus proches de vous",
             Subtitle = "",
             Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Quête de Malmedy", value: "Quête de Malmedy"),
-            new CardAction(ActionTypes.PostBack, "Quête du café de la place", value: "Quête du café de la place"),
-            new CardAction(ActionTypes.PostBack, "Parours de la cathédrale", value: "Parours de la cathédrale"),
-            new CardAction(ActionTypes.PostBack, "Quête des champignons", value: "Quête des champignons") }
+            new CardAction(ActionTypes.PostBack, "La montée du Calvaire", value: "La montée du Calvaire"),
+            new CardAction(ActionTypes.PostBack, "Parours de l'étang", value: "Parours de l'étang")}
         };
 
         reply.Attachments.Add(hc.ToAttachment());
@@ -86,7 +85,7 @@ using Microsoft.Bot.Connector;
         var message = await argument as Activity;
         var reply = message.CreateReply();
 
-        await context.PostAsync("Vous avez choisi la quête " + message.Text + "!");
+        await context.PostAsync("Vous avez choisi la quête \"" + message.Text + "\"!");
 
         await context.PostAsync("Voici la route à suivre jusqu'à la première épreuve");
 
@@ -263,10 +262,10 @@ using Microsoft.Bot.Connector;
     {
         var heroCard = new HeroCard
         {
-            
+            Title="Envoyez votre localisation",
             //Subtitle = "Your bots — wherever your users are talking",
 
-            Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Envoyez localisation!", value: "localisation") }
+            Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Envoyer", value: "localisation") }
         };
 
         return heroCard.ToAttachment();
