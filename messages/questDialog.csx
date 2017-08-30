@@ -94,7 +94,7 @@ using Microsoft.Bot.Connector;
 
         var heroCard = new HeroCard
         {
-            Title = "",
+            Title = "Suivez ce chemin.",
             //Subtitle = "Your bots — wherever your users are talking",
             Images = new List<CardImage> { new CardImage("https://imagizer.imageshack.us/v2/579x336q90/924/feJGy3.png") }
         };
@@ -120,7 +120,7 @@ using Microsoft.Bot.Connector;
 
         var heroCard = new HeroCard
         {
-            Title = "",
+            Title = "Suivez ce chemin.",
             //Subtitle = "Your bots — wherever your users are talking",
             Images = new List<CardImage> { new CardImage("https://imagizer.imageshack.us/v2/522x438q90/922/x61eEs.png") }
         };
@@ -158,7 +158,7 @@ using Microsoft.Bot.Connector;
 
         var heroCard = new HeroCard
         {
-            Title = "",
+            Title = "Suivez ce chemin.",
             //Subtitle = "Your bots — wherever your users are talking",
             Images = new List<CardImage> { new CardImage("https://imagizer.imageshack.us/v2/660x460q90/923/FqyH4x.png") }
         };
@@ -200,7 +200,7 @@ using Microsoft.Bot.Connector;
 
         var heroCard = new HeroCard
         {
-            Title = "",
+            Title = "Suivez ce chemin.",
             //Subtitle = "Your bots — wherever your users are talking",
             Images = new List<CardImage> { new CardImage("https://imagizer.imageshack.us/v2/628x401q90/924/C5AxYb.png") }
         };
@@ -226,7 +226,7 @@ using Microsoft.Bot.Connector;
 
         var heroCard = new HeroCard
         {
-            Title = "",
+            Title = "Suivez ce chemin.",
             //Subtitle = "Your bots — wherever your users are talking",
             Images = new List<CardImage> { new CardImage("https://imagizer.imageshack.us/v2/519x445q90/923/BKo21u.png") }
         };

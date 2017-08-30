@@ -34,7 +34,7 @@ using Microsoft.Bot.Connector;
             }
 
         //context.Wait(MessageReceivedAsync);
-        //await context.PostAsync("Salut! Je suis Enigmaa, es-tu prêt à partir à l'aventure?!");
+        await context.PostAsync("Salut! Je suis Enigmaa, es-tu prêt à partir à l'aventure?!");
         var menu = message.CreateReply();
 
             menu.Attachments = new List<Attachment>();
