@@ -181,7 +181,7 @@ using Microsoft.Bot.Connector;
         var message = await argument as Activity;
         var reply = message.CreateReply();
 
-        await context.PostAsync("Vous jouez depuis 7 minutes et 40 secondes.");
+        await context.PostAsync("Vous jouez depuis 2 minutes et 35 secondes.");
 
         await context.PostAsync("Actualisez votre position pour connaitre le chemin à suivre.");
 
@@ -248,7 +248,7 @@ using Microsoft.Bot.Connector;
         var reply = message.CreateReply();
 
         await context.PostAsync("Correct!");
-        await context.PostAsync("Vous avez terminé la quête de Malmedy en 12 minutes et 11 secondes!");
+        await context.PostAsync("Vous avez terminé la quête de Malmedy en 4 minutes et 45 secondes!");
         await context.PostAsync("Votre score est de 17 points!");
 
         await context.PostAsync("Sur une échelle de 1 à 10, comment noteriez-vous cette quête?");
