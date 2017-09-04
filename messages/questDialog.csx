@@ -57,9 +57,9 @@ using Microsoft.Bot.Connector;
         {
             Title = "Voici les quêtes les plus proches de vous",
             Subtitle = "",
-            Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Quête de Malmedy", value: "Quête de Malmedy"),
-            new CardAction(ActionTypes.PostBack, "Montée du Calvaire", value: "La montée du Calvaire"),
-            new CardAction(ActionTypes.PostBack, "Parours de l'étang", value: "Parours de l'étang")}
+            Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Quête des wallons", value: "Quête des wallons"),
+            new CardAction(ActionTypes.PostBack, "Tour du lac", value: "Tour du lac"),
+            new CardAction(ActionTypes.PostBack, "Brasse-temps", value: "Brasse-temps")}
         };
 
         reply.Attachments.Add(hc.ToAttachment());
@@ -96,7 +96,7 @@ using Microsoft.Bot.Connector;
         {
             Title = "Suivez ce chemin.",
             //Subtitle = "Your bots — wherever your users are talking",
-            Images = new List<CardImage> { new CardImage("https://imagizer.imageshack.us/v2/579x336q90/924/feJGy3.png") }
+            Images = new List<CardImage> { new CardImage("https://imagizer.imageshack.us/v2/594x420q90/924/ejJpDP.png") }
         };
         
         
@@ -110,8 +110,53 @@ using Microsoft.Bot.Connector;
         reply.Attachments.Add(getLocalisation());
         await context.PostAsync(reply);
 
-        context.Wait(this.secondLocalisation);
+        context.Wait(this.bite);
     }
+
+    public async Task bite(IDialogContext context, IAwaitable<IMessageActivity> argument)
+    {
+        var message = await argument as Activity;
+        var reply = message.CreateReply();
+
+        if (message.Text.StartsWith("localisation"))
+        {
+            var heroCard = new HeroCard
+            {
+                Title = "Suivez ce chemin.",
+                //Subtitle = "Your bots — wherever your users are talking",
+                Images = new List<CardImage> { new CardImage("https://imagizer.imageshack.us/v2/594x420q90/924/ejJpDP.png") }
+            };
+
+            reply.Attachments = new List<Attachment>();
+            reply.Attachments.Add(heroCard.ToAttachment());
+            await context.PostAsync(reply);
+
+            await context.PostAsync("Actualisez votre position pour connaitre le chemin à suivre.");
+
+            reply.Attachments = new List<Attachment>();
+            reply.Attachments.Add(getLocalisation());
+            await context.PostAsync(reply);
+
+            context.Wait(this.bite);
+        //}else(message.Text.StartsWith("temps"))
+        //{
+            //await context.PostAsync("Vous jouez depuis 35 secondes.");
+            //context.Wait(this.bite);
+        }else
+        {
+            context.Call(new menuP(1), after);
+
+        }
+       // else
+        //{
+         //   await context.PostAsync("Je n'ai pas compris votre message, vous pouvez envoyer 'menu' pour retourner sur le menu.");
+          //  context.Wait(this.bite);
+        //}
+
+        context.Wait(this.bite);
+    }
+
+
 
     public async Task secondLocalisation(IDialogContext context, IAwaitable<IMessageActivity> argument)
     {
@@ -264,7 +309,17 @@ using Microsoft.Bot.Connector;
 
     private async Task after(IDialogContext context, IAwaitable<object> result)
     {
-
+        try
+        {
+            var message = await result;
+        }
+        catch (Exception ex)
+        {
+            await context.PostAsync($"Failed with message: {ex.Message}");
+        }
+        finally
+        {
+        }
     }
 
     private static Attachment getLocalisation()
@@ -279,4 +334,6 @@ using Microsoft.Bot.Connector;
 
         return heroCard.ToAttachment();
     }
-}
+
+        
+    }
